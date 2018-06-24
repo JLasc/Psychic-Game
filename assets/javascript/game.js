@@ -24,6 +24,10 @@ function compGuess () {
     return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
 }
 
+// Empty user array to hold event key
+var userArray = [];
+
+var testArray = [compGuess()]
 
 /* ------------------------------------------------------------------------- */
 
@@ -33,9 +37,14 @@ function compGuess () {
 document.onkeyup = function(event) {
 
     // userGuess holds what button the user presses
-     userGuess = event.key; 
+    userGuess = event.key; 
 
-    
+    userArray = [userGuess];
+
+    console.log(userArray);
+
+
+
 
 
 
