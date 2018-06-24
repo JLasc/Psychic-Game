@@ -12,5 +12,9 @@
 
 
 
-//Arrays that hold alphabet
+//Arrays that holds alphabet
 var alphabet = ["abcdefghijklmnopqrstuvwxyz"]
+
+//Split alphabet array - turn string into array elements, place in new array
+var alphaSplit = alphabet.split("");
+
