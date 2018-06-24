@@ -24,10 +24,13 @@ function compGuess () {
     return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
 }
 
+// Array that holds computers guesses.
+var compArray = [compGuess()];
+
 // Empty user array to hold event key
 var userArray = [];
 
-var testArray = [compGuess()]
+
 
 /* ------------------------------------------------------------------------- */
 
