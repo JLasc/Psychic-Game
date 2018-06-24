@@ -39,22 +39,18 @@ var compArray = [];
 var wins = 0;
 var loses = 0;
 var guesses = 10;
-var gameover;
+var gameover = true;
 
 
 //Detects if user key pressed is in alphaSplit index
 function isUserInArray (x, y) {
     test = y.indexOf(x) > -1
-    if (test) {
-        userArray.push(x);
-        document.getElementById("guess").innerHTML = userArray;
-    } else if (x === "Enter") {
-        document.getElementById("guess").innerHTML = " ";
-    } else {
-        console.log(x)
-    }
+    return console.log(test) 
 }
 
+
+//need to fix push to userArray
+//need to fix displaying userArray on page
 
 /* ------------------------------------------------------------------------- */
 
@@ -66,51 +62,53 @@ document.onkeyup = function(event) {
     userKey = event.key;
     userKeyCode = event.keyCode;
     console.log(userKeyCode)
+    test1 = isUserInArray(userKey, alphaSplit);
+    console.log(test1);
     isUserInArray(userKey, alphaSplit);
 
-    //10 Guess countdown
-    if (userKeyCode === 13) {
-        //
-    } else if (userArray.length === 10) {
-        //
-    } else {
-        guesses--
-    }
 
-    //Press enter to start a new game
-    if (userKey === "Enter") {
-        compChoice()
-        alert("New game has started")
-        console.log(compArray)
-    };
-
-    //Win-loss conditional
-    if (userKey === compArray[0]) {
-        userArray = []
-        document.getElementById("guess").innerHTML = "You won! Press 'space' to outsmart the Psychic again."
-        wins++
-        guesses = 10
-        gameover = true;
-    } else if (userArray.length === 10) {
-        loses++
-        userArray = []
-        document.getElementById("guess").innerHTML = "You lost! Press 'space' to try again"
-        gameover = true;
-    } else if ((userKeyCode === 32) && (gameover)) {
-        compChoice()
-        console.log(compArray)
-        userArray = []
-        guesses = 10
-        document.getElementById("guess").innerHTML = " "
-        document.getElementById("guess").style.color = "black"
+    if (gameover === true) {
+        if (userKeyCode === 13) {
         gameover = false;
+        document.getElementById("guess").innerHTML = "The game has started, good luck!"
+    } else {
+        document.getElementById("guess").innerHTML = "You need to press 'enter' to start..."
+        return null
     }
+}
+    
+    //Win-loss conditional
+    if (gameover === false) {
+        
+        if (userKey === compArray[0]) {  // User wins if guesses the correct letter
+            userArray = []
+            document.getElementById("guess").innerHTML = "You won! Press 'enter' to outsmart the Psychic again."
+            wins++
+            guesses = 10
+            gameover = true;
+        } else if (userArray.length === 10) {  // If guesses hits 10, reset and add 1 to loses.
+            loses++
+            userArray = []
+            document.getElementById("guess").innerHTML = "You lost! Press 'enter' to try again"
+            gameover = true;
+        } else if ((userKeyCode === 32) && (gameover)) {
+            compChoice()
+            console.log(compArray)
+            userArray = []
+            guesses = 10
+            document.getElementById("guess").innerHTML = " "
+            document.getElementById("guess").style.color = "black"
+            gameover = false;
+        }
+    }
+        
 
 
-    if ((gameover) && (userKeyCode !== 32)) {
-        document.getElementById("guess").style.color = "red"
-        document.getElementById("guess").innerHTML = "Please press spacebar to try again."
-    } 
+        if ((gameover) && (userKeyCode !== 32)) {
+            document.getElementById("guess").style.color = "red"
+            document.getElementById("guess").innerHTML = "Please press 'space' to try again."
+        } 
+    
 
 
     //Scoreboard 
@@ -119,6 +117,7 @@ document.onkeyup = function(event) {
     "<p>Loses: " + loses + "</p>" +
     "<p>Guesses: " + guesses + "</p>";
     document.getElementById("score").innerHTML = scoreboard;
+    document.getElementById("guess").innerHTML = userArray;
 
 };
 
