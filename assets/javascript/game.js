@@ -16,21 +16,44 @@
 //Arrays that holds alphabet
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-//Splits string into a new array
-var alphaSplit = alphabet.split("");
+//Splits alphabet string into a new array
+var alphaSplit = alphabet.split(""); 
 
 // Function that allows computer to choose letter from array
 function compGuess () {
     return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
 }
 
-//Empty array for userGuess
-var userArray = [];
+//Function that stores compGuess in compArray
+function compChoice () {
+    compArray = [];
+    t = compGuess();
+    return compArray.push(t)
+}
 
-//Win/Loss variables
+//Empty array for userGuess & compArray
+var userArray = [];
+var compArray = [];
+
+//Win-Loss variables
 var wins = 0;
-var losses = 0;
+var loses = 0;
 var guesses = 10;
+
+//Detects if user key pressed is in alphaSplit index
+function isUserInArray (x, y) {
+    test = y.indexOf(x) > -1
+    if (test) {
+        userArray.push(x);
+        document.getElementById("guess").innerHTML = userArray;
+    } else if (x === "Enter") {
+        document.getElementById("guess").innerHTML = " ";
+    } else {
+        document.getElementById("guess").innerHTML = "This is not a real guess."
+    }
+}
+
+
 /* ------------------------------------------------------------------------- */
 
 
@@ -39,18 +62,28 @@ var guesses = 10;
 document.onkeyup = function(event) {
 
     // User process
-    userKey = event.key; 
-    userGuess = userArray.push(userKey);
-    document.getElementById("guess").innerHTML = userArray;
+    
+    userKey = event.key
+    isUserInArray(userKey, alphaSplit)
+
+    if (userKey === "Enter") {
+        compChoice()
+        alert("game has started")
+    }; 
 
     if (userArray.length === 10) {
+        loses++
+        compChoice()
         userArray = [];
         document.getElementById("guess").innerHTML = "Press any key to play again"
-    }
+    };
+
+   
+    
 
 
 
 
 
+};
 
-}
