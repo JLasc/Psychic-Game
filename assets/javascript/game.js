@@ -83,9 +83,11 @@ document.onkeyup = function(event) {
             userArray.push(userKey)
             console.log(userArray)
             document.getElementById("guess").innerHTML = userArray
+            guesses--
         }
     };
-        
+
+    // Game logic 
     if (gameover === false) {
         if (userKey === compArray[0]) {  // User wins if guesses the correct letter
             wins++
@@ -93,17 +95,12 @@ document.onkeyup = function(event) {
             document.getElementById("win-lose").innerHTML = "You won! press 'space' to try again"
         } else if (userArray.length === 10) {  // If guesses hits 10, reset and add 1 to loses.
             loses++
+            guesses = 10
             document.getElementById("win-lose").innerHTML = "You lost! Press 'space' to try again"
             gameover = true
+
     };
 }
-
-/*         if ((gameover) && (userKeyCode !== 32)) {
-            document.getElementById("guess").style.color = "red"
-            document.getElementById("guess").innerHTML = "Please press 'space' to try again."
-        } 
-     */
-
 
     //Scoreboard 
     scoreboard = 
