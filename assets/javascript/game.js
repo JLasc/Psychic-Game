@@ -42,15 +42,13 @@ var guesses = 10;
 var gameover = true;
 
 
-//Detects if user key pressed is in alphaSplit index
-function isUserInArray (x, y) {
-    test = y.indexOf(x) > -1
-    return console.log(test) 
-}
+//Detects if what user key pressed is in alphaSplit index
+    function keyShadow (x, y) {
+        return y.indexOf(x) > -1
+  
+    }
 
 
-//need to fix push to userArray
-//need to fix displaying userArray on page
 
 /* ------------------------------------------------------------------------- */
 
@@ -61,54 +59,50 @@ document.onkeyup = function(event) {
     // User interactions
     userKey = event.key;
     userKeyCode = event.keyCode;
-    console.log(userKeyCode)
-    test1 = isUserInArray(userKey, alphaSplit);
-    console.log(test1);
-    isUserInArray(userKey, alphaSplit);
+    console.log(userKeyCode);
+    test = keyShadow(userKey, alphaSplit)
 
 
+  //Game Start + Win/loss conditional
     if (gameover === true) {
-        if (userKeyCode === 13) {
+        userArray = []
+        document.getElementById("guess").innerHTML = userArray;
+        if (userKeyCode === 32) {
         gameover = false;
-        document.getElementById("guess").innerHTML = "The game has started, good luck!"
-    } else {
-        document.getElementById("guess").innerHTML = "You need to press 'enter' to start..."
+        document.getElementById("win-lose").innerHTML = "The game has started, good luck!"
+        compChoice()
+        console.log(compArray)
+        } else {
+        document.getElementById("win-lose").innerHTML = "You need to press 'space' to start..."
         return null
+        };
     }
-}
-    
-    //Win-loss conditional
+    // Once game condition is playable, logs user key to userArray
     if (gameover === false) {
+        if (test !== false) {
+            userArray.push(userKey)
+            console.log(userArray)
+            document.getElementById("guess").innerHTML = userArray
+        }
+    };
         
+    if (gameover === false) {
         if (userKey === compArray[0]) {  // User wins if guesses the correct letter
-            userArray = []
-            document.getElementById("guess").innerHTML = "You won! Press 'enter' to outsmart the Psychic again."
             wins++
-            guesses = 10
-            gameover = true;
+            gameover = true
+            document.getElementById("win-lose").innerHTML = "You won! press 'space' to try again"
         } else if (userArray.length === 10) {  // If guesses hits 10, reset and add 1 to loses.
             loses++
-            userArray = []
-            document.getElementById("guess").innerHTML = "You lost! Press 'enter' to try again"
-            gameover = true;
-        } else if ((userKeyCode === 32) && (gameover)) {
-            compChoice()
-            console.log(compArray)
-            userArray = []
-            guesses = 10
-            document.getElementById("guess").innerHTML = " "
-            document.getElementById("guess").style.color = "black"
-            gameover = false;
-        }
-    }
-        
+            document.getElementById("win-lose").innerHTML = "You lost! Press 'space' to try again"
+            gameover = true
+    };
+}
 
-
-        if ((gameover) && (userKeyCode !== 32)) {
+/*         if ((gameover) && (userKeyCode !== 32)) {
             document.getElementById("guess").style.color = "red"
             document.getElementById("guess").innerHTML = "Please press 'space' to try again."
         } 
-    
+     */
 
 
     //Scoreboard 
@@ -117,7 +111,6 @@ document.onkeyup = function(event) {
     "<p>Loses: " + loses + "</p>" +
     "<p>Guesses: " + guesses + "</p>";
     document.getElementById("score").innerHTML = scoreboard;
-    document.getElementById("guess").innerHTML = userArray;
 
 };
 
