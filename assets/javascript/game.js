@@ -14,15 +14,21 @@
 /* Global Elements */ 
 
 //Arrays that holds alphabet
-var alphabet = ["abcdefghijklmnopqrstuvwxyz"]
+var alphabet = ["abcdefghijklmnopqrstuvwxyz"];
 
 //Split alphabet array - turn string into array elements, place in new array
-var alphaSplit = alphabet.split("");
+var alphaSplit = alphabet.split(" ");
 
 
-
+//Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
-    userGuess = event.key; 
+    // userGuess holds what button the user presses
+     userGuess = event.key; 
+
+    // Function that allows computer to choose letter from array
+
+
+
 
 }
