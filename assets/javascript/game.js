@@ -11,7 +11,7 @@
 */
 
 
-/* Global Elements */ 
+/* --- Global Elements --- */ 
 
 //Arrays that holds alphabet
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -19,14 +19,14 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 //Splits string into a new array
 var alphaSplit = alphabet.split("");
 
-
-
 // Function that allows computer to choose letter from array
-var compChoice; 
-
 function compGuess () {
     return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
 }
+
+
+/* ------------------------------------------------------------------------- */
+
 
 
 //Event happens when key is pressed and finger lifted.
