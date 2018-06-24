@@ -11,6 +11,7 @@
 */
 
 
+/* Global Elements */ 
 
 //Arrays that holds alphabet
 var alphabet = ["abcdefghijklmnopqrstuvwxyz"]
@@ -18,3 +19,10 @@ var alphabet = ["abcdefghijklmnopqrstuvwxyz"]
 //Split alphabet array - turn string into array elements, place in new array
 var alphaSplit = alphabet.split("");
 
+
+
+document.onkeyup = function(event) {
+
+    userGuess = event.key; 
+
+}
