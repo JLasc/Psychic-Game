@@ -49,7 +49,7 @@ function isUserInArray (x, y) {
     } else if (x === "Enter") {
         document.getElementById("guess").innerHTML = " ";
     } else {
-        document.getElementById("guess").innerHTML = "This is not a real guess."
+        console.log(x)
     }
 }
 
@@ -58,32 +58,42 @@ function isUserInArray (x, y) {
 
 
 
+
 //Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
-    // User process
-    
+    // User interactions
     userKey = event.key
+    userKeyCode = event.keyCode
+    console.log(userKey);
     isUserInArray(userKey, alphaSplit)
 
+    //10 Guess countdown
+    if (userKey) {
+        guesses--
+    }
+
+    //Press enter to start a new game
     if (userKey === "Enter") {
         compChoice()
-        alert("game has started")
-    }; 
-
-    if (userArray.length === 10) {
+        alert("New game has started")
+        console.log(compArray)
+    }
+    //Win-loss conditional
+    if (userKey === compArray[0]) {
+        wins++
+        userArray = []
+        document.getElementById("guess").innerHTML = "You won! Press 'space' to outsmart the Psychic again."
+    } else if (userArray.length === 10) {
         loses++
+        userArray = []
+        document.getElementById("guess").innerHTML = "You lost! Press 'space' to try again"
+    } else if (userKeyCode === 32) {
         compChoice()
-        userArray = [];
-        document.getElementById("guess").innerHTML = "Press any key to play again"
-    };
-
-   
-    
-
-
-
-
+        userArray = []
+        guesses = 10
+        document.getElementById("guess").innerHTML = " "
+    } 
 
 };
 
