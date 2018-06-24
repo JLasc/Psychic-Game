@@ -20,14 +20,22 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var alphaSplit = alphabet.split("");
 
 
+
+// Function that allows computer to choose letter from array
+var compChoice; 
+
+function compGuess () {
+    return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
+}
+
+
 //Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
     // userGuess holds what button the user presses
      userGuess = event.key; 
 
-    // Function that allows computer to choose letter from array
-
+    
 
 
 
