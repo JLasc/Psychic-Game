@@ -14,13 +14,10 @@
 /* Global Elements */ 
 
 //Arrays that holds alphabet
-var alphabet = "abcdefghijklmnopqrstuvwxyz"
+var alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 //Splits string into a new array
-var alphaSplit = alphabet.split(" ");
-
-
-
+var alphaSplit = alphabet.split("");
 
 
 //Event happens when key is pressed and finger lifted.
