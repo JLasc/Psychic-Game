@@ -9,3 +9,8 @@
 6. User score respectively to win/loss will increment 
 
 */
+
+
+
+//Arrays that hold alphabet
+var alphabet = ["abcdefghijklmnopqrstuvwxyz"]
