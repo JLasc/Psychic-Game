@@ -39,6 +39,8 @@ var compArray = [];
 var wins = 0;
 var loses = 0;
 var guesses = 10;
+var gameover;
+
 
 //Detects if user key pressed is in alphaSplit index
 function isUserInArray (x, y) {
@@ -57,19 +59,21 @@ function isUserInArray (x, y) {
 /* ------------------------------------------------------------------------- */
 
 
-
-
 //Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
     // User interactions
-    userKey = event.key
-    userKeyCode = event.keyCode
-    console.log(userKey);
-    isUserInArray(userKey, alphaSplit)
+    userKey = event.key;
+    userKeyCode = event.keyCode;
+    console.log(userKeyCode)
+    isUserInArray(userKey, alphaSplit);
 
     //10 Guess countdown
-    if (userKey) {
+    if (userKeyCode === 13) {
+        //
+    } else if (userArray.length === 10) {
+        //
+    } else {
         guesses--
     }
 
@@ -78,22 +82,44 @@ document.onkeyup = function(event) {
         compChoice()
         alert("New game has started")
         console.log(compArray)
-    }
+    };
+
     //Win-loss conditional
     if (userKey === compArray[0]) {
-        wins++
         userArray = []
         document.getElementById("guess").innerHTML = "You won! Press 'space' to outsmart the Psychic again."
+        wins++
+        guesses = 10
+        gameover = true;
     } else if (userArray.length === 10) {
         loses++
         userArray = []
         document.getElementById("guess").innerHTML = "You lost! Press 'space' to try again"
-    } else if (userKeyCode === 32) {
+        gameover = true;
+    } else if ((userKeyCode === 32) && (gameover)) {
         compChoice()
+        console.log(compArray)
         userArray = []
         guesses = 10
         document.getElementById("guess").innerHTML = " "
+        document.getElementById("guess").style.color = "black"
+        gameover = false;
+    }
+
+
+    if ((gameover) && (userKeyCode !== 32)) {
+        document.getElementById("guess").style.color = "red"
+        document.getElementById("guess").innerHTML = "Please press spacebar to try again."
     } 
 
+
+    //Scoreboard 
+    scoreboard = 
+    "<p>Wins: " + wins + "</p>" +
+    "<p>Loses: " + loses + "</p>" +
+    "<p>Guesses: " + guesses + "</p>";
+    document.getElementById("score").innerHTML = scoreboard;
+
 };
+
 
