@@ -24,14 +24,13 @@ function compGuess () {
     return alphaSplit[Math.floor(Math.random() * alphaSplit.length)];
 }
 
-// Array that holds computers guesses.
-var compArray = [compGuess()];
-
-// Empty user array to hold event key
+//Empty array for userGuess
 var userArray = [];
 
-
-
+//Win/Loss variables
+var wins = 0;
+var losses = 0;
+var guesses = 10;
 /* ------------------------------------------------------------------------- */
 
 
@@ -39,12 +38,15 @@ var userArray = [];
 //Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
-    // userGuess holds what button the user presses
-    userGuess = event.key; 
+    // User process
+    userKey = event.key; 
+    userGuess = userArray.push(userKey);
+    document.getElementById("guess").innerHTML = userArray;
 
-    userArray = [userGuess];
-
-    console.log(userArray);
+    if (userArray.length === 10) {
+        userArray = [];
+        document.getElementById("guess").innerHTML = "Press any key to play again"
+    }
 
 
 
