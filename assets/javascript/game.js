@@ -45,7 +45,6 @@ var gameover = true;
 //Detects if what user key pressed is in alphaSplit index
     function keyShadow (x, y) {
         return y.indexOf(x) > -1
-  
     }
 
 
@@ -60,7 +59,7 @@ document.onkeyup = function(event) {
     userKey = event.key;
     userKeyCode = event.keyCode;
     console.log(userKeyCode);
-    test = keyShadow(userKey, alphaSplit)
+    shadow = keyShadow(userKey, alphaSplit)
 
 
   //Game Start + Win/loss conditional
@@ -79,7 +78,7 @@ document.onkeyup = function(event) {
     }
     // Once game condition is playable, logs user key to userArray
     if (gameover === false) {
-        if (test !== false) {
+        if (shadow !== false) {
             userArray.push(userKey)
             console.log(userArray)
             document.getElementById("guess").innerHTML = userArray
@@ -89,7 +88,7 @@ document.onkeyup = function(event) {
 
     // Game logic 
     if (gameover === false) {
-        if (userKey === compArray[0]) {  // User wins if guesses the correct letter
+        if (userKey === compArray[0]) {  // User wins if guesses the correct letter, reset, and add 1 to wins.
             wins++
             gameover = true
             document.getElementById("win-lose").innerHTML = "You won! press 'space' to try again"
