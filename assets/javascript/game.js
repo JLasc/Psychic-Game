@@ -47,6 +47,18 @@ var gameover = true;
         return y.indexOf(x) > -1
     }
 
+//Typewriter effects
+var i = 0;
+var txt = 'What letter am I thinking of?';
+var speed = 100;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("typew").innerHTML += txt.charAt(i)
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
 
 
 /* ------------------------------------------------------------------------- */
@@ -55,18 +67,20 @@ var gameover = true;
 //Event happens when key is pressed and finger lifted.
 document.onkeyup = function(event) {
 
+
+
     // User interactions
     userKey = event.key;
     userKeyCode = event.keyCode;
     console.log(userKeyCode);
     shadow = keyShadow(userKey, alphaSplit)
 
-
   //Game Start + Win/loss conditional
     if (gameover === true) {
         userArray = []
         document.getElementById("guess").innerHTML = userArray;
         if (userKeyCode === 32) {
+        typeWriter()
         gameover = false;
         document.getElementById("win-lose").innerHTML = "The game has started, good luck!"
         compChoice()
