@@ -71,8 +71,7 @@ document.onkeyup = function(event) {
 
     // User interactions
     userKey = event.key;
-    userKeyCode = event.keyCode;
-    console.log(userKeyCode);
+    userKeyCode = event.keyCode
     shadow = keyShadow(userKey, alphaSplit)
 
   //Game Start + Win/loss conditional
@@ -84,7 +83,6 @@ document.onkeyup = function(event) {
         gameover = false;
         document.getElementById("win-lose").innerHTML = "The game has started, good luck!"
         compChoice()
-        console.log(compArray)
         } else {
         document.getElementById("win-lose").innerHTML = "You need to press 'space' to start..."
         return null
@@ -94,7 +92,6 @@ document.onkeyup = function(event) {
     if (gameover === false) {
         if (shadow !== false) {
             userArray.push(userKey)
-            console.log(userArray)
             document.getElementById("guess").innerHTML = userArray
             guesses--
         }
