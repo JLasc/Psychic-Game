@@ -10,8 +10,6 @@ body, html {
     height: 100%;
     background-color: black !important;
     height: 100%;
-    
-
 }
 
 img {
@@ -38,7 +36,7 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
-.typew, .guess {
+.typew, #score, .guess {
     background: -webkit-linear-gradient(rgb(248, 52, 52), #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
