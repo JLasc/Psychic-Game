@@ -74,7 +74,7 @@ document.onkeyup = function(event) {
     userKeyCode = event.keyCode
     shadow = keyShadow(userKey, alphaSplit)
 
-  //Game Start + Win/loss conditional
+  //Game Start
     if (gameover === true) {
         userArray = []
         document.getElementById("guess").innerHTML = userArray;
