@@ -106,6 +106,7 @@ document.onkeyup = function(event) {
             wins++
             gameover = true
             document.getElementById("win-lose").innerHTML = "You won! press 'space' to try again"
+            guesses = 10
         } else if (userArray.length === 10) {  // If guesses hits 10, reset and add 1 to loses.
             loses++
             guesses = 10
