@@ -61,6 +61,7 @@ function typeWriter() {
 }
 
 
+
 /* ------------------------------------------------------------------------- */
 
 
@@ -73,6 +74,7 @@ document.onkeyup = function(event) {
     userKey = event.key;
     userKeyCode = event.keyCode
     shadow = keyShadow(userKey, alphaSplit)
+    sameLetter = keyShadow(userKey, userArray)
 
   //Game Start
     if (gameover === true) {
@@ -90,7 +92,7 @@ document.onkeyup = function(event) {
     }
     // Once game condition is playable, logs user key to userArray
     if (gameover === false) {
-        if (shadow !== false) {
+        if ((shadow !== false) && (sameLetter !== true)) {
             userArray.push(userKey)
             document.getElementById("guess").innerHTML = userArray
             guesses--
